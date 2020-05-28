@@ -28,7 +28,7 @@ The application we will create during the project build series is a "Syllabus Sh
 - [x] 5. Generate new [Rails API](https://edgeguides.rubyonrails.org/api_app.html) using `rails new <my_app_name> --database=postgresql --api`
     - (Replace `<my_app_name>` with the actual name of your project)
 - [x] 6. Create github repo
-- [ ] 7. Create a new branch for building out models. This way you can always go back to the fresh API.
+- [x] 7. Create a new branch for building out models. This way you can always go back to the fresh API.
     - **NOTE**: It is best practice to always create a new branch when working on a new feature/edit to your code. Your master branch should only have working code. Debug in a branch, not in master.
 
 **NOW WE'RE READY TO CODE (BUT JUST OUR MODELS — NO CONTROLLERS OR SERIALIZERS YET)**
