@@ -34,7 +34,21 @@ Syllabus.create(title: "West African Art History", description: "West African cu
 
 #### Questions
 1. Why should we do our migrations in our respective branches?
-2. What is the `belongs_to` [attribute in migrations](https://guides.rubyonrails.org/association_basics.html#the-belongs-to-association) doing for us? What's best practice? 
+2. What is the `belongs_to` [attribute in migrations](https://guides.rubyonrails.org/association_basics.html#the-belongs-to-association) doing for us? What's best practice?
+        - A: It indexes our associations. `belongs_to` is actually an alias of references. Read more in [this stackoverflow answer](https://stackoverflow.com/a/9471187). Indexing our associations is best practice.
+            - `rails g model Syllabus category:references` will generates an `category_id` column in the `syllabuses` table and will modify the `syllabus.rb` model to add a` belongs_to :category` relationship.
+            - `rails g migration AddCategoryToSyllabus category:belongs_to` will generate the following migration:
+
+            ```ruby
+            class AddCategoryToSyllabus < ActiveRecord::Migration
+              def change
+                # add_reference :syllabuses, :category, null: false, foreign_key: true
+                add_reference :syllabuses, :category, foreign_key: true
+              end
+            end
+            ```
+            - Because we're using PostGres we need to delete `null: false,` so this migration will be successful. Read why [here](https://stackoverflow.com/questions/24298171/pgnotnullviolation-error-null-value-in-column-id-violates-not-null-constra).
+            - Run `rake db:migrate`
 
 ### Stretch Goals
 - Authentication + Authorization
